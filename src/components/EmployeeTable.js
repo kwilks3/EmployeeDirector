@@ -1,10 +1,8 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import EmployeeItem from "./EmployeeItem";
 
-export default function EmployeeTable() {
-  const apiUrl = "https://randomuser.me/api/?results=200&nat=us";
-
-  fetch(apiUrl).then((response) => response.results);
+export default function EmployeeTable(props) {
   return (
     <Table striped bordered hover>
       <thead>
@@ -18,14 +16,17 @@ export default function EmployeeTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Mr</td>
-          <td>John</td>
-          <td>Smith</td>
-          <td>johnsmith@gmail.com</td>
-          <td>Austin</td>
-          <td>Texas</td>
-        </tr>
+        {props.employee.map((employee) => {
+          return (
+            <EmployeeItem
+              firstName={employee.name.first}
+              lastName={employee.name.last}
+              email={employee.email}
+              city={employee.location.city}
+              state={employee.location.state}
+            />
+          );
+        })}
       </tbody>
     </Table>
   );
