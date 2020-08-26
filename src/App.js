@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Title from "./components/Title";
-import Search from "./components/Search";
 import axios from "axios";
 
 import EmployeeTable from "./components/EmployeeTable";
@@ -18,7 +17,6 @@ function App() {
   return (
     <>
       <Title />
-      <Search />
       <EmployeeTable employee={employeeArray} />
     </>
   );
