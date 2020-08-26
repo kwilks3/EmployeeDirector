@@ -1,6 +1,5 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import EmployeeItem from "./EmployeeItem";
 
 export default function EmployeeTable(props) {
   return (
@@ -18,13 +17,14 @@ export default function EmployeeTable(props) {
       <tbody>
         {props.employee.map((employee) => {
           return (
-            <EmployeeItem
-              firstName={employee.name.first}
-              lastName={employee.name.last}
-              email={employee.email}
-              city={employee.location.city}
-              state={employee.location.state}
-            />
+            <tr>
+              <td>{employee.name.title}</td>
+              <td>{employee.name.first}</td>
+              <td>{employee.name.last}</td>
+              <td>{employee.email}</td>
+              <td>{employee.location.city}</td>
+              <td>{employee.location.state}</td>
+            </tr>
           );
         })}
       </tbody>
