@@ -1,4 +1,4 @@
-import React, { Na } from "react";
+import React from "react";
 import { Navbar } from "react-bootstrap";
 export default function Title() {
   return (
