@@ -10,26 +10,32 @@ export default function EmployeeTable(props) {
     {
       dataField: "title",
       text: "Title",
+      sort: true,
     },
     {
       dataField: "firstName",
       text: "First Name",
+      sort: true,
     },
     {
       dataField: "lastName",
       text: "Last Name",
+      sort: true,
     },
     {
       dataField: "email",
       text: "Email",
+      sort: true,
     },
     {
       dataField: "city",
       text: "City",
+      sort: true,
     },
     {
       dataField: "state",
       text: "State",
+      sort: true,
     },
   ];
   let data = [];
