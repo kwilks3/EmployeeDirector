@@ -3,7 +3,7 @@ import { Navbar } from "react-bootstrap";
 import "./Title.css";
 export default function Title() {
   return (
-    <Navbar className="header" expand="lg">
+    <Navbar className="header" data-testid="Title" expand="lg">
       <Navbar.Brand
         style={{
           color: "white",
