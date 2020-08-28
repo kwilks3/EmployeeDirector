@@ -6,6 +6,8 @@ import ToolkitProvider, {
   CSVExport,
 } from "react-bootstrap-table2-toolkit";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+
 import "./EmployeeTable.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
 export default function EmployeeTable(props) {
@@ -36,6 +38,9 @@ export default function EmployeeTable(props) {
       dataField: "email",
       text: "Email",
       sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { width: "300px", textAlign: "center" };
+      },
     },
     {
       dataField: "city",
@@ -76,25 +81,17 @@ export default function EmployeeTable(props) {
     >
       {(props) => (
         <Container style={{ marginTop: "5%" }}>
-          <Row>
-            <Col>
-              <h3 className="searchText">Search by any field:</h3>
-            </Col>
-            <Col>
-              <SearchBar {...props.searchProps} placeholder="Search" />
-            </Col>
-            <Col>
-              <Button
-                variant="outline-secondary"
-                size="sm"
-                style={{
-                  borderColor: "#55897b",
-                }}
-              >
-                <ClearSearchButton {...props.searchProps} />
-              </Button>
-            </Col>
-          </Row>
+          <h3 className="searchText">Search by any field:</h3>
+          <SearchBar {...props.searchProps} placeholder="Search" />
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            style={{
+              borderColor: "#55897b",
+            }}
+          >
+            <ClearSearchButton {...props.searchProps} />
+          </Button>
           <Button
             variant="outline-secondary"
             size="sm"
