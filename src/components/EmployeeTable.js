@@ -1,9 +1,14 @@
 import React from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-
+import ToolkitProvider, {
+  Search,
+  CSVExport,
+} from "react-bootstrap-table2-toolkit";
+import "./EmployeeTable.css";
 export default function EmployeeTable(props) {
   const { SearchBar, ClearSearchButton } = Search;
+  const { ExportCSVButton } = CSVExport;
 
   const columns = [
     {
@@ -60,16 +65,50 @@ export default function EmployeeTable(props) {
       data={data}
       columns={columns}
       search
+      exportCSV={{
+        fileName: "employeeData.csv",
+        separator: ",",
+        ignoreHeader: true,
+        noAutoBOM: false,
+      }}
     >
       {(props) => (
-        <div>
-          <h3>Search through any field:</h3>
-          <SearchBar {...props.searchProps} placeholder="Search" />
-          <ClearSearchButton {...props.searchProps} />
-
+        <Container style={{ marginTop: "5%" }}>
+          <Row>
+            <Col>
+              <h3 className="searchText">Search by any field:</h3>
+            </Col>
+            <Col>
+              <SearchBar {...props.searchProps} placeholder="Search" />
+            </Col>
+            <Col>
+              <Button
+                variant="outline-secondary"
+                size="sm"
+                style={{
+                  borderColor: "#55897b",
+                }}
+              >
+                <ClearSearchButton {...props.searchProps} />
+              </Button>
+            </Col>
+            <Col>
+              <Button
+                variant="outline-secondary"
+                size="sm"
+                style={{
+                  borderColor: "#55897b",
+                }}
+              >
+                <ExportCSVButton {...props.csvProps}>
+                  Export a CSV file
+                </ExportCSVButton>
+              </Button>
+            </Col>
+          </Row>
           <hr />
-          <BootstrapTable {...props.baseProps} striped hover condensed />
-        </div>
+          <BootstrapTable {...props.baseProps} hover condensed />
+        </Container>
       )}
     </ToolkitProvider>
   );
