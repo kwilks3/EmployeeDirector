@@ -5,7 +5,9 @@ import ToolkitProvider, {
   Search,
   CSVExport,
 } from "react-bootstrap-table2-toolkit";
+import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import "./EmployeeTable.css";
+import paginationFactory from "react-bootstrap-table2-paginator";
 export default function EmployeeTable(props) {
   const { SearchBar, ClearSearchButton } = Search;
   const { ExportCSVButton } = CSVExport;
@@ -92,22 +94,25 @@ export default function EmployeeTable(props) {
                 <ClearSearchButton {...props.searchProps} />
               </Button>
             </Col>
-            <Col>
-              <Button
-                variant="outline-secondary"
-                size="sm"
-                style={{
-                  borderColor: "#55897b",
-                }}
-              >
-                <ExportCSVButton {...props.csvProps}>
-                  Export a CSV file
-                </ExportCSVButton>
-              </Button>
-            </Col>
           </Row>
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            style={{
+              borderColor: "#55897b",
+            }}
+          >
+            <ExportCSVButton {...props.csvProps}>
+              Export a CSV file
+            </ExportCSVButton>
+          </Button>
           <hr />
-          <BootstrapTable {...props.baseProps} hover condensed />
+          <BootstrapTable
+            {...props.baseProps}
+            hover
+            condensed
+            pagination={paginationFactory()}
+          />
         </Container>
       )}
     </ToolkitProvider>
