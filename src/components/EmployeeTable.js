@@ -1,9 +1,18 @@
 import React from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import ToolkitProvider, {
+  Search,
+  CSVExport,
+} from "react-bootstrap-table2-toolkit";
+import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
+import "./EmployeeTable.css";
+import paginationFactory from "react-bootstrap-table2-paginator";
 export default function EmployeeTable(props) {
   const { SearchBar, ClearSearchButton } = Search;
+  const { ExportCSVButton } = CSVExport;
 
   const columns = [
     {
@@ -29,6 +38,9 @@ export default function EmployeeTable(props) {
       dataField: "email",
       text: "Email",
       sort: true,
+      headerStyle: (colum, colIndex) => {
+        return { width: "300px" };
+      },
     },
     {
       dataField: "city",
@@ -60,16 +72,45 @@ export default function EmployeeTable(props) {
       data={data}
       columns={columns}
       search
+      exportCSV={{
+        fileName: "employeeData.csv",
+        separator: ",",
+        ignoreHeader: true,
+        noAutoBOM: false,
+      }}
     >
       {(props) => (
-        <div>
-          <h3>Search through any field:</h3>
+        <Container style={{ marginTop: "5%" }}>
+          <h3 className="searchText">Search by any field:</h3>
           <SearchBar {...props.searchProps} placeholder="Search" />
-          <ClearSearchButton {...props.searchProps} />
-
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            style={{
+              borderColor: "#55897b",
+            }}
+          >
+            <ClearSearchButton {...props.searchProps} />
+          </Button>
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            style={{
+              borderColor: "#55897b",
+            }}
+          >
+            <ExportCSVButton {...props.csvProps}>
+              Export a CSV file
+            </ExportCSVButton>
+          </Button>
           <hr />
-          <BootstrapTable {...props.baseProps} striped hover condensed />
-        </div>
+          <BootstrapTable
+            {...props.baseProps}
+            hover
+            condensed
+            pagination={paginationFactory()}
+          />
+        </Container>
       )}
     </ToolkitProvider>
   );
