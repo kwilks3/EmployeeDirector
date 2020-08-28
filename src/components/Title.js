@@ -1,12 +1,15 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
+import "./Title.css";
 export default function Title() {
   return (
-    <Navbar bg="dark" expand="lg">
+    <Navbar className="header" expand="lg">
       <Navbar.Brand
         style={{
-          fontSize: "30px",
           color: "white",
+          fontSize: "30px",
+          width: "30%",
+          marginLeft: "35%",
         }}
       >
         Employee Directory
