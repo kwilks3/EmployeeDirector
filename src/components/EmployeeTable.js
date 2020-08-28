@@ -39,7 +39,7 @@ export default function EmployeeTable(props) {
       text: "Email",
       sort: true,
       headerStyle: (colum, colIndex) => {
-        return { width: "300px", textAlign: "center" };
+        return { width: "300px" };
       },
     },
     {

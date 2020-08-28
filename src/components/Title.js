@@ -9,7 +9,7 @@ export default function Title() {
           color: "white",
           fontSize: "30px",
           width: "30%",
-          marginLeft: "35%",
+          marginLeft: "45%",
         }}
       >
         Employee Directory
