@@ -54,7 +54,13 @@ export default function EmployeeTable(props) {
     });
   });
   return (
-    <ToolkitProvider keyField="id" data={data} columns={columns} search>
+    <ToolkitProvider
+      data-testid="EmployeeTable"
+      keyField="id"
+      data={data}
+      columns={columns}
+      search
+    >
       {(props) => (
         <div>
           <h3>Search through any field:</h3>
