@@ -11,8 +11,8 @@ function App() {
   if (employeeArray.length === 0) {
     axios
       .get("https://randomuser.me/api/?results=200&nat=us")
-      .then((res) => SetEmployeeArray(res.data.results));
-    console.log(employeeArray);
+      .then((res) => SetEmployeeArray(res.data.results))
+      .catch((error) => console.log(error.response));
   }
   return (
     <>
@@ -21,4 +21,5 @@ function App() {
     </>
   );
 }
+
 export default App;
