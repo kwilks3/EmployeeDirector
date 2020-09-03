@@ -1,13 +1,9 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import App from "./App";
+import { employeeService } from "./api";
 import axios from "axios";
-import EmployeeTable from "./components/EmployeeTable";
-
 jest.mock("axios");
-
-describe("App", () => {
-  it("sucessfully fetched data from API", () => {
+// testing API calls
+describe("employeeService", () => {
+  it("fetches successfully data from an API", async () => {
     const data = {
       gender: "female",
       name: {
@@ -66,12 +62,13 @@ describe("App", () => {
       nat: "US",
     };
     axios.get.mockImplementationOnce(() => Promise.resolve(data));
+    await expect(employeeService.apiCall()).resolves.toEqual(data);
   });
-
-  it("fetches erroneously data from an API", () => {
+  it("fetches erroneously data from an API", async () => {
     const errorMessage = "Network Error";
     axios.get.mockImplementationOnce(() =>
       Promise.reject(new Error(errorMessage))
     );
+    await expect(employeeService.apiCall()).rejects.toThrow(errorMessage);
   });
 });
